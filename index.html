@@ -1,14 +1,57 @@
 <html>
     <head>
-        <script src="main.js"></script>
         <link rel="stylesheet" href="style.css">
-    </head> 
-    <body>
+        <script src="main.js"></script>
+        <script src="firebase.mjs" type="module"></script>
 
+        <!-- for pwa -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#7cd97c">
+        <link rel="apple-touch-icon" href="/dogs/icons/icon-256x256.png">
+        <link rel="manifest" href="manifest.webmanifest">
+        <script>
+            window.addEventListener('load', ()=>{
+                if('serviceWorker' in navigator){
+                    navigator.serviceWorker.register('sw.js');
+                }
+            });
+        </script>
+        <script src="installButton.js"></script>
+    </head>
+    <body>
         <div class="header">
-            Choose a Breed of Dog.
+            Welcome welcome, choose a dog breed.
         </div>
-        <div id="button"></div>
-        <img id="dog"></img>
+        <div id="buttons"></div>
+        <div id="dog"></div>
+        <div id="comments">
+            <div id="signupDiv" style="display:none">
+                Register to add a comment:
+                <br>
+                Email: <input id="emailReg">
+                Password: <input type="password" id="passwordReg">
+                <button id="registerBtn">Register</button>
+                <br>
+                Already register? <a id="loginLink">Click here to sign in.</a>
+            </div>
+            <div id="loginDiv" style="display:none">
+                Log in to add a comment:
+                <br>
+                Email: <input id="email">
+                Password: <input type="password" id="password">
+                <button id="loginBtn">Log In</button>
+                <br>
+                New user? <a id="signupLink">Click here to register.</a>
+            </div>
+            <div id="addCommentDiv" style="display:none">
+                <textarea name="" id="newComment" cols="30" rows="3"></textarea>
+                <button id="addCommentBtn">Add Comment</button>
+                <br>
+                <a id="slattbratha">Click here to log out.</a>
+            </div>
+            <div class="error"></div>
+        </div>
     </body>
 </html>
